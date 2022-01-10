@@ -141,6 +141,7 @@ def f(x):
     a=x+1
     return a*a+x+1
 
+# Calcul: a*a+x+1 avec a=x+1 donc a*a+a
 x=0  # initialisation de x à 0 (int)
 y=f(2)
 # x=2 (on écrase le 0 déclaré juste avant) donc a=2+1=3 donc affiche:
@@ -152,8 +153,60 @@ y=f(1)+f(2)
 # x=1, a=1+1=2 --> y=(2*2+1+1)+12=18 en int
 z=x+1  # initialisation de z=0+1=1 en int
 y=f(z)  # x=z=1 donc a=2 et y=2*2+1+1=6 en int
-y=f(x+1)
-z=f(x-t)
-t=f(t)
-x=f(f(1))
+y=f(x+1)  # x=0 donc x+1=1 donc y=6 en int donc ne change rien
+z=f(x-t)  # x=0, t=4 donc x-t=0-4=-4 donc a=-4+1=-3 et donc z=-3*-3+-4+1=6
+t=f(t)  # t=x=4 donc a=4+1=5 donc t=5*5+4+1=30 en int
+x=f(f(1))  # Des calclus précédents on sait que f(1)=6 donc ici: x=6 donc a=6+1=7 et x=7*7+6+1=56
 
+
+##### Exercice 9
+# 1.
+# Majuscule à Def qui rend le code faux
+
+# 2.
+# Manque l'alinéa qui rend le code faux
+
+# 3.
+# Manque ":" qui rend le code faux
+
+# 4.
+# x n'est pas défini au début
+
+# 5.
+# Fonctionne
+
+# 6.
+# La fonction n'a pas d'argument, mais pourtant on en demande un dans l'execution à la fin, donc erreur
+
+
+##### Exercice 10
+%reset -f
+import math
+def discriminant(a,b,c):
+    d=(b**b)-4*a*c
+    if d>0:  # deux solutions
+        x=[(-b-math.sqrt(d))/(2*a),(-b+math.sqrt(d))/(2*a)]
+    elif d==0:  # solution unique
+        x=[-b/(2*a)]        
+    else:  # pas de solution
+        x=[]
+    return x
+
+discriminant(9,5,5)
+
+
+
+##### Exercice 11
+# 1.
+%reset -f
+def moyenne(a,b):
+    x=(a+b)/2
+    return x
+moyenne(42,23)
+
+# 2.
+%reset -f
+def moyennePonderee(a,coef_a,b,coef_b):
+    x=(a+b)/(coef_a+coef_b)
+    return x
+moyennePonderee(5,2,12,3)

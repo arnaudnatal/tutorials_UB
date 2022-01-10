@@ -1,7 +1,7 @@
-#Introduction TD1 econometrics
-#L3 eco
-#Arnaud NATAL
-#arnaud.natal@u-bordeaux.fr
+# Introduction TD1 econometrics
+# L3 eco
+# Arnaud NATAL
+# arnaud.natal@u-bordeaux.fr
 
 ##### 1. Commandes élémentaires
 ### 1.2. Travailler
