@@ -337,4 +337,4 @@ summary(reg)
 
 p2<-p1+geom_smooth(method="lm")
 
-reg$coef[1]+(35*60)*reg$coef[2]
+reg$coef[1]+45000*reg$coef[2]
