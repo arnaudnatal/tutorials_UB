@@ -1,4 +1,4 @@
-# TD3 econometrics
+# TD4 econometrics
 # L3 eco
 # Arnaud NATAL
 # arnaud.natal@u-bordeaux.fr
@@ -337,4 +337,4 @@ summary(reg)
 
 p2<-p1+geom_smooth(method="lm")
 
-reg$coef[1]+45000*reg$coef[2]
+reg$coef[1]+(35*60)*reg$coef[2]
