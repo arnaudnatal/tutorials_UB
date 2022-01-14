@@ -14,7 +14,7 @@ library(xlsx)
 library(foreign)
 library(rgl)
 library(car)
-githubinstall("PoEdata")
+#githubinstall("PoEdata")
 
 
 setwd("C:/Users/Arnaud/Documents/_Université/Doctorat/TD/2021-22/Econometrie_L3_eco/_Data")
@@ -41,7 +41,8 @@ setwd("C:/Users/Arnaud/Documents/_Université/Doctorat/TD/2021-22/Econometrie_L3
 ##### Exercice 3
 rm(list = ls())
 
-data<-read.table("AmesHousing.txt",header=TRUE)
+#data<-read.table("AmesHousing.txt",header=TRUE)
+data<-read.csv("AmesHousing.csv",dec=".",sep=",",h=T)
 
 data$SalePrice=na.omit(data$SalePrice)
 data$Gr.Liv.Area=na.omit(data$Gr.Liv.Area)

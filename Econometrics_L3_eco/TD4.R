@@ -43,11 +43,18 @@ rm(list = ls())
 
 data<-read.table("AmesHousing.txt",header=TRUE)
 
+# Quanti cont
+
 data$SalePrice=na.omit(data$SalePrice)
 data$Gr.Liv.Area=na.omit(data$Gr.Liv.Area)
 str(data$SalePrice)
-str(data$Gr.Liv.Area)
 data$SalePrice=as.numeric(data$SalePrice)
+
+str(data$Gr.Liv.Area)
+data$Gr.Liv.Area=as.numeric(data$Gr.Liv.Area)
+
+str(tabE$Lot.Area)
+data$Lot.Area=as.numeric(data$Lot.Area)
 
 p1<-ggplot(data,aes(x=Gr.Liv.Area,y=SalePrice))+geom_point()
 p1
