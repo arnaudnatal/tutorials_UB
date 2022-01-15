@@ -1,4 +1,4 @@
-# TD4 econometrics
+# TD4 econometrics, part 1
 # L3 eco
 # Arnaud NATAL
 # arnaud.natal@u-bordeaux.fr
@@ -41,33 +41,53 @@ setwd("C:/Users/Arnaud/Documents/_Université/Doctorat/TD/2021-22/Econometrie_L3
 ##### Exercice 3
 rm(list = ls())
 
-data<-read.table("AmesHousing.txt",header=TRUE)
+tabE<-read.csv("AmesHousing.csv")
+
+### Part 1
 
 # Quanti cont
 
-data$SalePrice=na.omit(data$SalePrice)
-data$Gr.Liv.Area=na.omit(data$Gr.Liv.Area)
-str(data$SalePrice)
-data$SalePrice=as.numeric(data$SalePrice)
+tabE$SalePrice=na.omit(tabE$SalePrice)
+tabE$Gr.Liv.Area=na.omit(tabE$Gr.Liv.Area)
+tabE$Lot.Area=na.omit(tabE$Lot.Area)
 
-str(data$Gr.Liv.Area)
-data$Gr.Liv.Area=as.numeric(data$Gr.Liv.Area)
+str(tabE$SalePrice)
+tabE$SalePrice=as.numeric(tabE$SalePrice)
+
+str(tabE$Gr.Liv.Area)
+tabE$Gr.Liv.Area=as.numeric(tabE$Gr.Liv.Area)
 
 str(tabE$Lot.Area)
-data$Lot.Area=as.numeric(data$Lot.Area)
+tabE$Lot.Area=as.numeric(tabE$Lot.Area)
 
-p1<-ggplot(data,aes(x=Gr.Liv.Area,y=SalePrice))+geom_point()
-p1
+# Ecrire à la main le modèle à estimer
 
-n<-length(data$SalePrice)
-n
-
-reg<-lm(data$SalePrice~data$Gr.Liv.Area)
+reg<-lm(tabE$SalePrice~tabE$Lot.Area+tabE$Gr.Liv.Area)
 summary(reg)
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, en moyenne si la surface du logement augmente de 1 pied carre alors le prix de vente augmente de 108.50 dollars.
+# TCEPA, en moyenne si la taille du terrain augmente de 1 pied carre alors le prix de vente augmente de 0.7141 dollar.
 
-p2<-p1+geom_smooth(method="lm")
+reg$coef[1]+10148*reg$coef[2]+1500*reg$coef[3]
 
-reg$coef[1]+1600*reg$coef[2]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ##### Exercice 4
@@ -76,25 +96,23 @@ rm(list = ls())
 library(PoEdata)
 data(andy)
 
+### Part 1
+
 andy$sales=na.omit(andy$sales)
 andy$price=na.omit(andy$price)
+andy$advert=na.omit(andy$advert)
 str(andy$sales)
 str(andy$price)
+str(andy$advert)
 
-p1<-ggplot(andy,aes(x=price,y=sales))+geom_point()
-p1
+# Ecrire à la main le modèle à estimer
 
-n<-lenght(andy$sales)
-n
-
-reg<-lm(andy$sales~andy$price)
+reg<-lm(andy$sales~andy$price+andy$advert)
 summary(reg)
-
-p2<-p1+geom_smooth(method="lm")
-
-reg$coef[1]+5*reg$coef[2]
-
-
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, em, si l’indice de prix augmente de 1 dollar alors les ventes diminuent de 7907.90 dollars
+# TCEPA, em, si les d´epenses en publicit´e augmentent de 1000 dollars alors les ventes augmentent de 1860 dollars
 
 
 
@@ -114,22 +132,29 @@ data(pizza4)
 
 pizza4$pizza=na.omit(pizza4$pizza)
 pizza4$income=na.omit(pizza4$income)
+pizza4$age=na.omit(pizza4$age)
 str(pizza4$pizza)
 str(pizza4$income)
 pizza4$pizza=as.numeric(pizza4$pizza)
+str(pizza4$age)
 
-p1<-ggplot(pizza4,aes(x=income,y=pizza))+geom_point()
-p1
+# Ecrire à la main le modèle à estimer
 
-n<-length(pizza4$income)
-n
-
-reg<-lm(pizza4$pizza~pizza4$income)
+reg<-lm(pizza4$pizza~pizza4$income+pizza4$age)
 summary(reg)
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, em, si l’ˆage augmente d’une ann´ee alors les d´epenses annuelles de pizza diminue de 7.5756 dollars
+# TCEPA, em, si le revenu annuel augmente d’un millier de dollars alors les d´epenses annuelles de pizza augmentent de 1.83 dollars
 
-p2<-p1+geom_smooth(method="lm")
 
-reg$coef[1]+100*reg$coef[2]
+
+
+
+
+
+
+
 
 
 ##### Exercice 6
@@ -139,22 +164,20 @@ data<-read.dta("wage2.dta")
 
 data$lwage=na.omit(data$lwage)
 data$KWW=na.omit(data$KWW)
+data$educ=na.omit(data$educ)
 str(data$lwage)
 str(data$KWW)
+str(data$educ)
 
-p1<-ggplot(data,aes(x=KWW,y=lwage))+geom_point()
-p1
+# Ecrire à la main le modèle à estimer
 
-n<-lenght(data$lwage)
-n
-
-reg<-lm(data$lwage~data$KWW)
+reg<-lm(data$lwage~data$KWW+data$educ)
 summary(reg)
-
-p2<-p1+geom_smooth(method="lm")
-
-reg$coef[1]+55*reg$coef[2]
-
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, em, si le r´esultat au test de connaissances sur le march´e du travail augmente de 1 point alors le salaire augmente de 0.98%
+# TCEPA, em, si le r´esultat au test du QI augmente de 1 point alors le salaire augmente de 0.44%
+# TCEPA, em, si le niveau d’´education augmente d’un an alors le salaire augmente de 3.1%
 
 
 
@@ -172,23 +195,38 @@ tabI<-read.table("ceosal2.dat",h=T)
 
 tabI$salary=na.omit(tabI$salary)
 tabI$sales=na.omit(tabI$sales)
+tabI$ceoten=na.omit(tabI$ceoten)
+tabI$mktval=na.omit(tabI$mktval)
 str(tabI$salary)
 str(tabI$sales)
+str(tabI$ceoten)
+str(tabI$mktval)
 tabI$salary=as.numeric(tabI$salary)
 tabI$sales=as.numeric(tabI$sales)
+tabI$mktval=as.numeric(tabI$mktval)
 
-p1<-ggplot(tabI,aes(x=sales,y=salary))+geom_point()
-p1
+# Ecrire à la main le modèle à estimer
 
-n<-length(tabI$salary)
-n
-
-reg<-lm(tabI$salary~tabI$sales)
+reg<-lm(tabI$salary~tabI$sales+tabI$ceoten+tabI$mktval)
 summary(reg)
+# Toutes les pvalue sont inférieur au seuil de risque de 6.5%
+# Écriture avec les chapeaux
+# TCEPA, em, si le niveau des ventes augmente de 1 million de $ alors la valeur de la compensation re¸cue augmente de 0.01902 milliers de $ soit 19 dollars
+# TCEPA, em, si le nombre d’ann´ees dans la compagnie augmente d’un an alors la valeur de la compensation re¸cue augmente de 12.7 milliers de dollars soit 12700 dollars
+# TCEPA, em, si la valeur de march´e de la firme augmente de 1 million de $ alors la valeur de la compensation re¸cue augmente de 0.0234 milliers de dollars soit 23.40 dollars
 
-p2<-p1+geom_smooth(method="lm")
 
-reg$coef[1]+25000*reg$coef[2]
+
+
+
+
+
+
+
+
+
+
+
 
 
 ##### Exercice 8
@@ -197,26 +235,28 @@ rm(list = ls())
 library(car)
 data(Prestige)
 
+Prestig$education=na.omit(Prestige$education)
+Prestig$women=na.omit(Prestige$women)
 Prestige$prestige=na.omit(Prestige$prestige)
 Prestige$income=na.omit(Prestige$income)
+str(Prestige$education)
+str(Prestige$women)
 str(Prestige$prestige)
 str(Prestige$income)
 Prestige$income=as.numeric(Prestige$income)
 
-p1<-ggplot(Prestige,aes(x=income,y=prestige))+geom_point()
-p1
+# Ecrire à la main le modèle à estimer
 
-n<-length(Prestige$prestige)
-n
-
-reg<-lm(prestige~income,data=Prestige)
+reg<-lm(prestige~income+education+women,data=Prestige)
 summary(reg)
+# Le coefficient associ´e `a la variable women n’´etant pas significatif on enl`eve cette variable de la r´egression
 
-p2<-p1+geom_smooth(method="lm")
-
-reg$coef[1]+1750*reg$coef[2]
-
-
+reg<-lm(prestige~income+education,data=Prestige)
+summary(reg)
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, em, si le revenu augmente de 1000 dollars alors le degr´e de rang social augmente de 1
+# TCEPA, em, si le nombre d’ann´ees d’´education augmente d’une ann´ee alors le degr´e social augmente de 4
 
 
 
@@ -241,22 +281,26 @@ pe<-prgeng[ prgeng$educ>= 13 & prgeng$educ !=15 ,]
 
 pe$age=na.omit(pe$age)
 pe$wageinc=na.omit(pe$wageinc)
+pe$wkswrkd=na.omit(pe$wkswrkd)
 str(pe$age)
 str(pe$wageinc)
+str(pe$wkswrkd)
 pe$wageinc=as.numeric(pe$wageinc)
 
-p1<-ggplot(pe,aes(x=age,y=wageinc))+geom_point()
-p1
+# Ecrire à la main le modèle à estimer
 
-n<-length(pe$age)
-n
-
-reg<-lm(pe$wageinc~pe$age)
+reg<-lm(pe$wageinc~pe$age+pe$wkswrkd)
 summary(reg)
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, si on compare deux programmeurs ou 2 ing´enieurs de la Silicon Valley ayant travaill´e le mˆeme nombre de semaine dans l’ann´ee, le plus d’ˆag´e d’un an aura un salaire annuel moyen plus ´elev´e de 497.63 dollars.
+# TCEPA, si on compare deux programmeurs ou 2 ing´enieurs de la Silicon Valley ayant le mˆeme ˆage, celui qui a travaill´e une semaine de plus dans l’ann´ee aura un salaire annuel moyen plus ´elev´e de 1494.6 dollars.
 
-p2<-p1+geom_smooth(method="lm")
 
-reg$coef[1]+30*reg$coef[2]
+
+
+
+
 
 
 ##### Exercice 10
@@ -264,29 +308,24 @@ rm(list = ls())
 
 tabL<-read.table("BWGHT.dat",h=F)
 tabL1<-subset(tabL, select =c(4,10))
-names(tabL1)<-c("bwght","cigs")
+names(tabL1)<-c("bwght","cigs", "faminc", "male", "white")
 
 tabL1$bwght=na.omit(tabL1$bwght)
 tabL1$cigs=na.omit(tabL1$cigs)
+tabL1$bwght=na.omit(tabL1$faminc)
 str(tabL1$bwght)
 str(tabL1$cigs)
+str(tabL1$faminc)
 tabL1$bwght=as.numeric(tabL1$bwght)
 
-p1<-ggplot(tabL1,aes(x=cigs,y=bwght))+geom_point()
-p1
+# Ecrire à la main le modèle à estimer
 
-n<-length(tabL1$bwght)
-n
-
-reg<-lm(tabL1$bwght~tabL1$cigs)
+reg<-lm(tabL1$bwght~tabL1$cigs+tabL1$faminc)
 summary(reg)
-
-p2<-p1+geom_smooth(method="lm")
-
-reg$coef[1]+35*reg$coef[2]
-
-
-
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, em, si le nombre de cigarettes fum´ees /jour augmente d’une cigarette alors le poids du b´eb´e `a la naissance diminue de 0.463 once
+# TCEPA, em, si le revenu familial augmente de 1000 dollars US alors le poids du b´eb´e `a la naissance augmente de 0.092 once.
 
 
 
@@ -302,22 +341,29 @@ data(cars,package="caret")
 
 cars$Price=na.omit(cars$Price)
 cars$Mileage=na.omit(cars$Mileage)
+cars$Cylinder=na.omit(cars$Cylinde)
+cars$Doors=na.omit(cars$Doors)
 str(cars$Price)
 str(cars$Mileage)
+str(cars$Cylinder)
+str(cars$Doors)
 cars$Mileage=as.numeric(cars$Mileage)
 
-p1<-ggplot(cars,aes(x=Mileage,y=Price))+geom_point()
-p1
+# Ecrire à la main le modèle à estimer
 
-n<-length(cars$Price)
-n
-
-reg<-lm(Price~Mileage,data=cars)
+reg<-lm(Price~Mileage+Cylinder+Doors,data=cars)
 summary(reg)
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, em, si la voiture a parcouru 100 miles en plus alors son prix diminuera de 15.53 dollars
+# TCEPA, em, si la voiture a un cylindre en plus alors son prix augmentera de 4029 dollars
+# TCEPA, em, si la voiture a une porte en plus alors son prix diminuera de 1653 dollars
 
-p2<-p1+geom_smooth(method="lm")
+# Une GM avec 4 portes, 6 cylindres et 21000 miles au compteur vaudra 23325.7 dollars (=9025-0.1553*21000+4029*6-1653*4)
 
-reg$coef[1]+45000*reg$coef[2]
+
+
+
 
 
 
@@ -325,23 +371,21 @@ reg$coef[1]+45000*reg$coef[2]
 rm(list = ls())
 
 tabC<-read.table("sleep75.dat",h=F)
-tabC1<-subset(tabC, select =c(6,16,21,26))
-names(tabC1)<-c("educ","male","sleep","totwrk")
+tabC1<-subset(tabC, select =c(6,16,21,26, 30))
+names(tabC1)<-c("educ","male","sleep","totwrk", "exper")
 
 tabC1$sleep=na.omit(tabC1$sleep)
 tabC1$totwrk=na.omit(tabC1$totwrk)
+tabC1$exper=na.omit(tabC1$exper)
 str(tabC1$sleep)
 str(tabC1$totwrk)
+str(tabC1$exper)
 
-p1<-ggplot(tabC1,aes(x=totwrk,y=sleep))+geom_point()
-p1
+# Ecrire à la main le modèle à estimer
 
-n<-length(tabC1$sleep)
-n
-
-reg<-lm(sleep~totwrk,data=tabC1)
+reg<-lm(sleep~totwrk+exper,data=tabC1)
 summary(reg)
-
-p2<-p1+geom_smooth(method="lm")
-
-reg$coef[1]+(35*60)*reg$coef[2]
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, em, si on passe une minute de plus au travail dans la semaine, on perd 0.14 mn de temps de sommeil dans la semaine
+# TCEPA, em, si on a une ann´ee d’exp´erience en + alors la dur´ee de sommeil augmente de 3 minutes
