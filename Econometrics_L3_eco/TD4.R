@@ -165,13 +165,15 @@ data<-read.dta("wage2.dta")
 data$lwage=na.omit(data$lwage)
 data$KWW=na.omit(data$KWW)
 data$educ=na.omit(data$educ)
+data$IQ=na.omit(data$IQ)
 str(data$lwage)
 str(data$KWW)
 str(data$educ)
+str(data$IQ)
 
 # Ecrire à la main le modèle à estimer
 
-reg<-lm(data$lwage~data$KWW+data$educ)
+reg<-lm(data$lwage~data$KWW+data$educ+data$IQ)
 summary(reg)
 # Toutes les pvalue sont inférieur au seuil de risque de 5%
 # Écriture avec les chapeaux
@@ -307,7 +309,7 @@ summary(reg)
 rm(list = ls())
 
 tabL<-read.table("BWGHT.dat",h=F)
-tabL1<-subset(tabL, select =c(4,10))
+tabL1<-subset(tabL, select =c(4,10,1,8,9))
 names(tabL1)<-c("bwght","cigs", "faminc", "male", "white")
 
 tabL1$bwght=na.omit(tabL1$bwght)
