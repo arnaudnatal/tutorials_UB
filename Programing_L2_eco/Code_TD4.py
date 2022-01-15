@@ -98,11 +98,117 @@ for x in u:
         print(x,y,x+y,x==y)
 # 4*5=20
 # Croise toutes les valeurs entre elles
-
+# Pour sortir u v u+v et TRUE OR FALSE si u=v
 
 ##### Exercice 4
+%reset -f
 def sommeListe(L):
     s=0
     for i in L:
         s=s+i
     return s
+
+sommeListe([1,3,13])
+# L [1,3,13] --> 1 --> 3 --> 13
+# i -        --> 1 --> 3 --> 13
+# s 0        --> 1 --> 4 --> 17
+# 17
+
+sommeListe([1])
+# L [1] --> 1
+# i -   --> 1
+# s 0   --> 1
+# 1
+
+sommeListe([])
+# 0
+
+
+def sommeListe(L):
+    s=0
+    for i in L:
+        s=s+i
+        return s
+
+# Il ne va pas relancer la boucle, donc il va afficher le premier résultat
+sommeListe([2, 9, 18, 5])
+
+
+##### Exercice 5
+%reset -f
+
+def sommeCarresListe(L):
+    s=0
+    for i in L:
+        s=s+i**2
+    return s
+
+from math import *
+def ecartTypeListe(L):
+    s = sommeListe(L)
+    s2 = sommeCarresListe(L)
+    n = len(L)
+    return sqrt(s2/n-(s*s)/(n*n))
+
+
+##### Exercice 6
+%reset -f
+## --
+def moyenneListe(L):
+    s=0
+    for i in L:
+        s=s+i
+    return s/len(L)
+moyenneListe([1,2,3,4,5,6,7,2,3,99])
+
+# variante 1
+def moyenneListe(L):
+    s=0
+    c=0
+    for i in L:
+        s=s+i
+        c=c+1
+    return s/c
+moyenneListe([1,2,3,4,5,6,7,2,3,99])
+
+# variante 2
+def moyenneListe(L):
+    return sommeListe(L)/len(L)
+moyenneListe([1,2,3,4,5,6,7,2,3,99])
+
+
+## --
+def maximumListe(L):
+    max=0
+    for j in L :
+        if j>max:
+            max=j
+    return max
+maximumListe([1,2,3,4,5,6,7,2,3,99])
+
+## --
+def nbPairsListe(L):
+    compt=0
+    for j in L:
+        if j%2==0:
+            compt=compt+1
+    return compt
+nbPairsListe([1,2,3,4,5,6,7,2,3,99])
+
+
+##### Exercice 7
+%reset -f
+def tousPairsListe(L):
+    for j in L:
+        if j%2==1:
+            return False
+    return True
+tousPairsListe([1,2,3,4,5,6,7,2,3,99])
+
+
+def existePairListe(L):
+    for j in L:
+        if j%2==0:
+            return True
+    return False
+existePairListe([1,2,3,4,5,6,7,2,3,99])
