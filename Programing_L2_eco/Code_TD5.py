@@ -97,7 +97,193 @@ def premier2 (n):
     return True
 
 
-#####• Exercice 4
+##### Exercice 4
 %reset -f
 
 from bibcsv import *
+from math import *
+
+def moyenneListe(L):
+    return sommeListe(L)/len(L)
+
+def maximumListe(L):
+    max=0
+    for j in L :
+        if j>max:
+            max=j
+    return max
+
+def sommeListe(L):
+    s=0
+    for i in L:
+        s=s+i
+    return s
+
+def sommeCarresListe(L):
+    s=0
+    for i in L:
+        s=s+i**2
+    return s
+
+def ecartTypeListe(L):
+    s = sommeListe(L)
+    s2 = sommeCarresListe(L)
+    n = len(L)
+    return sqrt(s2/n-(s*s)/(n*n))
+
+maliste=ouvrirCSV("notes.csv")
+mlmoy=moyenneListe(maliste)
+mlsd=ecartTypeListe(maliste) 
+mlmax=maximumListe(maliste)
+
+maliste2=ouvrirCSV("temperatures.csv")
+ml2moy=moyenneListe(maliste2)
+ml2sd=ecartTypeListe(maliste2) 
+ml2max=maximumListe(maliste2)
+
+def mystere(L, x):
+    cpt=0
+    for i in L :
+        if i>x:
+            cpt=cpt+1
+            if cpt==3:
+                return True
+        else:
+            cpt=0
+    return False
+
+mystere(maliste2, 30)
+
+
+
+##### Exercice 5
+%reset -f
+
+def facteurImpair(n):
+    while n%2==0:
+        n=n//2
+    return n
+
+
+def puissanceDiviseur(p,n):
+    v=p
+    while n%v==0:
+        v=p*v
+    return v//p
+
+# variante
+def puissanceDiviseurBis(p,n):
+    v=1
+    while n%p==0:
+        n=n//p
+        v=p*v
+    return v 
+
+
+def premierSuivant (n):
+    p=n+1
+    while not premier(p):
+        p=p+1
+    return p
+
+
+def decompositionProduitFacteursPremiers(n):
+    p=2
+    l=[]
+    while n>1:
+        while n>1 and n%p==0:
+            n=n//p
+            l=l+[p]
+         p=premierSuivant(p)
+    return l
+
+
+
+##### Exercice 6
+%reset -f
+
+def syracuse (a,n):
+    u=a
+    for i in range (n):
+        if u%2==0:
+            u=u//2
+        else:
+            u=(3*u+1)
+    return u
+
+def longueur (a):
+    n=0
+    while syracuse(a,n)>1:
+        n=n+1
+    return n
+
+# variante
+def longueur(a):
+    u=a
+    n=0
+    while u>1:
+        if u%2==0:
+            u=u//2
+        else:
+            u=(3*u+1)
+        n=n+1
+    return n
+
+# on peut aussi définir la fonction qui
+# calcule un nouveau terme de la suite
+# en fonction du précédent:
+def f(u):
+    if u%2==0:
+        return u//2
+    else:
+        return (3*u+1)
+
+# et écrire:
+def longueur(a):
+    u=a
+    n=0
+    while u>1:
+        u=f(u)
+        n=n+1
+    return n
+
+def listeSyracuse(a):
+    u=a
+    s=[u]
+    while u>1:
+        u=f(u)
+        s=s+[u]
+    return s
+    
+def hauteur(a):
+    u=a
+    max=a
+    while u>1:
+        u=f(u)
+        if u>max:
+            max=u
+    return max
+
+
+##### Exercice 6
+%reset -f
+
+def suite(n):
+    u=3
+    for i in range(n):
+        u=u/2+1/u
+    return u
+
+def sqrt(x):
+    u=x
+    for i in range(10):
+        u=(u+x/u)/2
+    return u
+
+def sqrt2(x):
+    u=x+1
+    u2=x
+    while abs(u2-u)>0.0000001:
+        u=u2
+        u2=(u+x/u)/2
+    return u2
