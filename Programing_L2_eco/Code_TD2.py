@@ -23,45 +23,60 @@ bi=i%2==0 or i%3==0
 # TRUE as boolean 
 bj=j%2==0 or j%3==0
 # 0 mod n equals 0
-# FALSE as boolean
+# TRUE as boolean
 b=not(bi and bj)
 # bi=bj=TRUE, bi AND bj = TRUE --> not true = FALSE so FALSE as boolean
 # 
 
 
 ##### Exercice 2
+# AND: if 1=FALSE, saute deuxième
+# OR:  if 1=TRUE, saute deuxième
+
 %reset -f
-# AND = if 1=FALSE, saute deuxième
-# OR = if 1=TRUE, saute deuxième
-
-a=5
-b=7
-c=9
-
+a=1
+b=2
+c=3
 a!=b and b!=c  
-# a!=b (TRUE) then & b!=c (TRUE) --> TRUE
-# a!=b (TRUE) then & b==c (FALSE) --> FALSE
-# a==b (FALSE) --> FALSE
-# OK
-
 a!=b and b!=c and a!=c
-# a!=b (TRUE) then & b!=c (TRUE) then & a!=c (TRUE) --> TRUE
-# a!=b (TRUE) then & b==c (FALSE) --> FALSE 
-# a==b (FALSE) --> FALSE
-# OK
-
 a!=b or b!=c
-# a!=b (TRUE) --> TRUE
-# a==b (FALSE) then or b!=c (TRUE) --> TRUE
-# a==b (FALSE) then or b==c (FALSE) --> FALSE
-# NO
-
 a!=b or b!=c or a!=c
-# a!=b (TRUE) --> TRUE
-# a==b (FALSE) then or b!=c (TRUE) --> TRUE
-# a==b (FALSE) then or b==c (FALSE) then or a!=c (TRUE)--> TRUE
-# a==b (FALSE) then or b==c (FALSE) then or a==c (FALSE)--> FALSE
-# NO
+
+%reset -f
+a=1
+b=2
+c=1
+a!=b and b!=c  
+a!=b and b!=c and a!=c
+a!=b or b!=c
+a!=b or b!=c or a!=c
+
+%reset -f
+a=1
+b=2
+c=2
+a!=b and b!=c  
+a!=b and b!=c and a!=c
+a!=b or b!=c
+a!=b or b!=c or a!=c
+
+%reset -f
+a=1
+b=1
+c=2
+a!=b and b!=c  
+a!=b and b!=c and a!=c
+a!=b or b!=c
+a!=b or b!=c or a!=c
+
+%reset -f
+a=1
+b=1
+c=1
+a!=b and b!=c  
+a!=b and b!=c and a!=c
+a!=b or b!=c
+a!=b or b!=c or a!=c
 
 
 ##### Exercice 3
@@ -75,8 +90,8 @@ y=f(9)
 
 ##### Exercice 4
 %reset -f
-n=2
-n=3
+n=4
+n=5
 
 n==0%2
 # Toujours FALSE car modulo 0 --> 0, so NO
@@ -157,6 +172,12 @@ def compare(a, b):
     return 1
 
 
+
+
+
+
+
+
 ##### Exercice 7
 def max2(x, y):
     if x<y:
@@ -169,6 +190,16 @@ def max2(x, y):
     if x<y:
         return y
     return x
+
+
+
+
+
+
+
+
+
+
 
 
 ##### Exercice 8
@@ -202,11 +233,11 @@ def max3(x, y, z):
 %reset -f
 def coutPhotocopies(n):
     if 0<n<=10:
-        return print("Pour", n, "photocopie, le coût est de", n*0.2)
+        return n*0.2
     elif 10<n<=30:
-        return print("Pour", n, "photocopie, le coût est de", (0.2*10)+(n-10)*0.15) 
+        return (0.2*10)+(n-10)*0.15
     elif 30<n:
-        return print("Pour", n, "photocopie, le coût est de", (0.2*10)+(0.15*20)+(n-30)*0.1)
+        return (0.2*10)+(0.15*20)+(n-30)*0.1
     else:
         return print("Le nombre de photocopie doit être strictement positif.")
 

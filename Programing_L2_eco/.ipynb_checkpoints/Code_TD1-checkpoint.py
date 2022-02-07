@@ -57,10 +57,11 @@ x=2*x
 print(x)
 x=2*x
 print(x)
-# n | 1 | 2 | 3 | 4
+#   | 1 | 2 | 3 | 4
 # x | 1 | 2 | 4 | 8
 # Double la valeur de x à chaque fois
-# Calcul x*(2^n)
+# Eleve x à la puissance n-1
+
 
 ##### Exercice 5
 # 1.
@@ -114,9 +115,9 @@ y=x-+1
 a=2
 b=5
 
-z=b
+c=b
 b=a
-a=z
+a=c
 print(a, b)
 
 
@@ -127,13 +128,11 @@ x=13.4-6  # écrase x pour lui donner 7.4 --> diminution de la variable qui pass
 y=13/4  # initialisation de y à 3.25 (float)
 y=13//4  # écrase y pour lui donner 3 --> diminution car avec reste et passe en integer
 z=13%2
-# modulo associe à deux entiers naturels le reste de la division euclidienne du premier par le second: 13//2=6 donc 13-(2*6)=1
+# modulo associe à deux entiers naturels le reste de la division euclidienne du premier par le second: 13=12*2+1
 # Donc donne initialise z à 1 en integer
-x=14%10  # écrase x pour lui donner 14//10=1 donc 14-(10*1)=4 --> diminution et passe en integer
-# modulo 10 va donc "garder" la valeur de l'unité
+x=14%10  # écrase x pour lui donner 4 (14=1*10+4) --> diminution et passe en integer
 y=14//10  # écrase y pour lui donner 1 --> diminution et reste en integer
 i=x+y  # initialise i pour lui donner 4+1=5 et donc integer
-
 
 
 ##### Exercice 8
@@ -145,7 +144,7 @@ def f(x):
 # Calcul: a*a+x+1 avec a=x+1 donc a*a+a
 x=0  # initialisation de x à 0 (int)
 y=f(2)
-# on entre dans la fonction a=2+1=3 donc affiche:
+# x=2 (on écrase le 0 déclaré juste avant) donc a=2+1=3 donc affiche:
 # y=3*3+2+1=12 comme int
 t=4  # initialisation de t à 4 en int
 y=f(t)
@@ -184,7 +183,7 @@ x=f(f(1))  # Des calclus précédents on sait que f(1)=6 donc ici: x=6 donc a=6+
 %reset -f
 import math
 def discriminant(a,b,c):
-    d=(b**2)-4*a*c
+    d=(b**b)-4*a*c
     if d>0:  # deux solutions
         x=[(-b-math.sqrt(d))/(2*a),(-b+math.sqrt(d))/(2*a)]
     elif d==0:  # solution unique
@@ -208,6 +207,6 @@ moyenne(42,23)
 # 2.
 %reset -f
 def moyennePonderee(a,coef_a,b,coef_b):
-    x=(coef_a*a+coef_b*b)/(coef_a+coef_b)
+    x=(a+b)/(coef_a+coef_b)
     return x
 moyennePonderee(5,2,12,3)

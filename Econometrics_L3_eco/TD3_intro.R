@@ -14,6 +14,9 @@
 #install.packages("rgl")
 #install.packages("car")
 
+rm(list = ls())
+
+
 library(questionr)
 library(dplyr)
 library(e1071)
@@ -23,7 +26,6 @@ library(foreign)
 library(rgl)
 library(car)
 
-rm(list = ls())
 setwd("C:/Users/Arnaud/Documents/_Université/Doctorat/TD/2021-22/Econometrie_L3_eco/_Data")
 
 

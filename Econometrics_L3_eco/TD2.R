@@ -131,3 +131,24 @@ h1<-ggplot(br, aes(x=price))+geom_histogram(bins=m)+ggtitle("Histogramme du prix
 h1
 # 6.
 h2<-h1+facet_wrap("pool")
+
+
+#### 6.7 pizza
+rm(list=ls())
+library(githubinstall)
+
+githubinstall("PoEdata")
+
+library(PoEdata)
+library(ggplot2)
+data(pizza4)
+
+attach(pizza4)
+pizza<-na.omit(pizza)
+str(pizza)
+pizza<-as.numeric(pizza)
+summary(pizza)
+m <-ceiling(diff(range(pizza))/(2*IQR(pizza)/length(pizza)^(1/3)))
+
+h1<-ggplot(, aes(x=pizza))+geom_histogram(bins=m)+ggtitle("")+xlab("Dépenses annuelles en USD de pizza en Californie")+ ylab("Effectif")
+h1
