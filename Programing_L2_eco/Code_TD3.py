@@ -41,6 +41,7 @@ mystere(20)
 # 2870
 
 # Calcul: 1**2+2**2+3**2+4**2+...+n**2
+# Somme des chiffres/nombres au carré qui composent le nombre n
 
 
 ##### Exercice 2
@@ -113,8 +114,10 @@ def indiceCullen(x):
         n=n+1
     return n-1
 
-cullen(9)
-indiceCullen(9)
+
+cullen(3)
+indiceCullen(15)
+indiceCullen2(15)
 
 
 ##### Exercice 5
@@ -140,6 +143,16 @@ def nombreDeChiffres(n):
         m=1
     return m
 
+def nombreDeChiffres(n):
+    m=0
+    while n>0:
+        m=m+1
+        n=n//10
+    if m==0:
+        return 1
+    return m
+
+
 def plusGrandChiffre(n):
     m=0
     while n>0:
@@ -159,6 +172,19 @@ def mystere4(n):
     return s
 
 # Résultat de la somme 1+2+3+...+n
+
+# Normalement fonction du premier exo
+def new(n):
+    s=0
+    i=0
+    while i<=n:
+        s=s+i
+        i=i+1
+    return s
+
+mystere4(5)
+new(5)
+
 
 
 ##### Exercice 7
@@ -182,7 +208,15 @@ def sommeCarres(n):
 
 
 ##### Exercice 9
+%reset -f
+def nombreDiviseurs(n):
+    diviseurs=[];
+    for i in range(1, n+1):
+        if n%i==0:
+            diviseurs.append(i)
+    return diviseurs
 
+nombreDiviseurs(256)
 
 
 ##### Exercice 10
