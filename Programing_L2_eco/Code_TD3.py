@@ -210,13 +210,31 @@ def sommeCarres(n):
 ##### Exercice 9
 %reset -f
 def nombreDiviseurs(n):
-    diviseurs=[];
+    s=0;
     for i in range(1, n+1):
         if n%i==0:
-            diviseurs.append(i)
-    return diviseurs
-
+            s=s+1
+    return s
 nombreDiviseurs(256)
+
+def Diviseurs(n):
+    div=[];
+    for i in range(1, n+1):
+        if n%i==0:
+            div.append(i)
+    return div
+Diviseurs(256)
+
+
+def estDiviseur(i,n):
+    return n%i == 0
+
+def estPremier(n):
+    for i in range(2,n):
+        if estDiviseur(i,n):
+            return False
+    return n >= 2
+
 
 
 ##### Exercice 10

@@ -255,6 +255,8 @@ reg$coef[1]+30*reg$coef[2]
 
 ##### Exercice 10
 rm(list = ls())
+setwd
+library(ggplot2)
 
 tabL<-read.table("BWGHT.dat",h=F)
 tabL1<-subset(tabL, select =c(4,10))
@@ -276,6 +278,7 @@ reg<-lm(tabL1$bwght~tabL1$cigs)
 summary(reg)
 
 p2<-p1+geom_smooth(method="lm")
+p2
 
 reg$coef[1]+35*reg$coef[2]
 
@@ -284,6 +287,30 @@ reg$coef[1]+35*reg$coef[2]
 
 
 
+##### Exercice 15
+rm(list = ls())
+setwd
+library(ggplot2)
+
+library(githubinstall)
+githubinstall("PoEdata")
+library(PoEdata)
+data(br)
+attach(br)
+
+price<-na.omit(price)
+sqft<-na.omit(sqft)
+str(price)
+str(sqft)
+p1<-ggplot(,aes(x=sqft, y=price))+geom_point()
+p1
+reg<-lm(price~sqft)
+reg2<-lm(price~sqft+0)
+summary(reg)
+summary(reg2)
+summary(reg$res)
+ggplot(reg,aes(x=sqft, y=.resid))+geom_point()
+confint(reg)
 
 
 
