@@ -235,7 +235,7 @@ def estPremier(n):
             return False
     return n >= 2
 
-
+estPremier(12)
 
 ##### Exercice 10
 def approxPi(nbEtapes):

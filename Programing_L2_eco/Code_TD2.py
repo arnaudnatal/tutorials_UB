@@ -248,5 +248,3 @@ coutPhotocopies(10)
 coutPhotocopies(15)
 coutPhotocopies(30)
 coutPhotocopies(31)
-
-    
