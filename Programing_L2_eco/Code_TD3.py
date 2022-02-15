@@ -217,14 +217,6 @@ def nombreDiviseurs(n):
     return s
 nombreDiviseurs(256)
 
-def Diviseurs(n):
-    div=[];
-    for i in range(1, n+1):
-        if n%i==0:
-            div.append(i)
-    return div
-Diviseurs(256)
-
 
 def estDiviseur(i,n):
     return n%i == 0
@@ -245,26 +237,83 @@ def approxPi(nbEtapes):
         approx = approx + signe / (2*i+1)
         signe = -signe
     approx = 4 * approx
-    print (approx)
+    return approx
+    
+# Une étape correspond à 1/3
+# 1 - -1/3
+# 2 - +1/5
+# 3 - -1/7
+# 4 - +1/9
+# 5 - -1/11
+# C'est 2 * nb étape + 1
+# qui s'ajoute à chaque fois
+# Avec changement de signe
+
+# Donc on initialise à i=0 qui correspond au +1
+# une étape = ancienne + 2 * nb étape -1 (/ (2*i+1))
+# Boucle pour du coup ici
+# La dernière valeur n'est pas prise en compte
+# Donc jusqu'à étape +1
+
+# La première étape correspond à une soustraction donc on va initialiser le numérateurà -1
+# et à chaque nouvelle valeur on prend l'opposé de l'ancienne valeur donc on va passer de -1
+# à -(-1)=+1
+# puis à -(+1)=-1
+# etc.
+
 
 
 ##### Exercice 11
 def liste3chiffres():
     for n in range(100,1000):
-        unite = n % 10
-        dizaine = ((n - unite) // 10) % 10
-        centaine = (n - 10 * dizaine - unite) // 100
-        if ((centaine + dizaine + unite) % 5 == 0):
-            print(n)
+        unite=n%10
+        dizaine=(n//10)%10
+        centaine=(n//100)%10
+        if ((centaine + dizaine + unite)%5==0):
+            print(n)            
             
+# nb à 3 chiffre = 100 à 999 donc [100;1000[
+# on récupère pas à pas les unités qu'on stock
+# puis si la somme de ça est multiple de 5 alors on affiche
+# unité juste n%10
+# on enlève les unité en divisant, puis on passe aux dizaines...
+ 
 
 ##### Exercice 12
+def factorielle(n):
+   if n==0:
+      return 1
+   else:
+      var=1
+      for i in range(2,n+1):
+         var=var*i
+      return var
+# factorielle de 0=1
+# factorielle de 3 = 1*2*3
+# on fait une boucle avec un compteur et on multiplie le compteur petit à petit par lui même
+
+# Sinon par une approche recursive = en arrière au lieu d'aller en avant
 def factorielle(n):
     if n==0:
         return 1
     else:
         return n*factorielle(n-1)
+
+# 4!=4*3*2*1
+# sachant que 3*2*1=3!
+# sachant que 2*1=2!
+# donc on lui demande de nous retourner
+# n*factorielle(n-1)
+
+def factoriellecent():
+    for i in range(0,101):
+        fact=factorielle(i)
+        print(i, fact)
+factoriellecent()
     
+# condition: k<=n
+# si k=0 le coef est 1
+# k parmi n: n!/(k!(n-k)!)
 def coeff_binomial(n,k):
     if k>n:
         return 0
@@ -272,11 +321,31 @@ def coeff_binomial(n,k):
         return 1
     else:
         return factorielle(n)//(factorielle(n-k)*factorielle(k))
-    
-    
+
+coeff_binomial(5,2)
+# on met dans cet ordre pour avoir row *col
+# k parmi n
+# 2 parmi 5
+# sur le triangle de Pascal on prend k ième col et n ième ligne
+# k = col
+# n = row 
+
 ##### Exercice 13
+#     0 1 2  3  4 5
+# 0 - 1
+# 1 - 1 1
+# 2 - 1 2 1
+# 3 - 1 3 3  1
+# 4 - 1 4 6  4  1
+# 5 - 1 5 10 10 5 1
+
+# Il faut faire défiler les colonnes et les lignes, donc mettre deux compteurs pour
+# 
+      
 def triangle_pascal(nb_lignes):
-    for k in range(nb_lignes):
-        for j in range(k+1):
-            print(coeff_binomial(k,j), end=" ")
-        print()  
+    for n in range(nb_lignes+1): 
+        for k in range(n): 
+            print(coeff_binomial(n,k), end=" ") 
+        print()        
+        
+triangle_pascal(5)
