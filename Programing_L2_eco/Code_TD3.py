@@ -208,6 +208,12 @@ def sommeCarres(n):
 
 
 ##### Exercice 9
+
+# diviseur d'un entier naturel
+# donc il faut que le reste
+# de la division euclidienne soit = à 0
+# donc modulo==0
+# on fait tous les diviseurs d'un nb donc on doit tester tous les i allant de 1 à x-1
 %reset -f
 def nombreDiviseurs(n):
     s=0;
@@ -218,16 +224,22 @@ def nombreDiviseurs(n):
 nombreDiviseurs(256)
 
 
-def estDiviseur(i,n):
-    return n%i == 0
+# Un nombre premier est un entier naturel qui admet exactement deux diviseurs distincts entiers et positifs (qui sont alors 1 et lui-même).
+# Par opposition, un nombre non nul produit de deux nombres entiers différents de 1 est dit composé.
+# Pour savoir si un nb est premier on fait le test de primalité
 
+# pour tester N , on vérifie s’il est divisible par l’un des entiers compris au sens large entre 2 et N − 1. # Si la réponse est négative, alors N est premier, sinon il est composé.
 def estPremier(n):
     for i in range(2,n):
-        if estDiviseur(i,n):
+        if n%i==0:
             return False
-    return n >= 2
+    return n>=2
 
-estPremier(12)
+
+
+estPremier(5)
+# n=5
+# i=2 --> 5%2
 
 ##### Exercice 10
 def approxPi(nbEtapes):
