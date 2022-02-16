@@ -229,17 +229,20 @@ nombreDiviseurs(256)
 # Pour savoir si un nb est premier on fait le test de primalité
 
 # pour tester N , on vérifie s’il est divisible par l’un des entiers compris au sens large entre 2 et N − 1. # Si la réponse est négative, alors N est premier, sinon il est composé.
+# on va jusqu'à n du coup en Python
 def estPremier(n):
     for i in range(2,n):
         if n%i==0:
             return False
-    return n>=2
-
-
+    return n>=2 # Nous retourne vrai si n est sup à deux, false sinon
 
 estPremier(5)
 # n=5
-# i=2 --> 5%2
+# i=2 --> 5%2=1 donc rien
+# i=3 --> 5%3=2 donc rien
+# i=4 --> 5%4=1 donc rien
+
+# n>=2 donc retourne True
 
 ##### Exercice 10
 def approxPi(nbEtapes):
