@@ -14,8 +14,8 @@ library(xlsx)
 library(foreign)
 library(rgl)
 library(car)
-githubinstall("PoEdata")
-
+#githubinstall("PoEdata")
+library(PoEdata)
 
 setwd("C:/Users/Arnaud/Documents/_Université/Doctorat/TD/2021-22/Econometrie_L3_eco/_Data")
 
@@ -31,12 +31,136 @@ setwd("C:/Users/Arnaud/Documents/_Université/Doctorat/TD/2021-22/Econometrie_L3
 
 
 
+########## Mercredi
+
+
+
+
+##### Exercice 10
+rm(list = ls())
+
+tabL<-read.table("BWGHT.dat",h=F)
+tabL1<-subset(tabL, select =c(4,10,1,8,9))
+names(tabL1)<-c("bwght","cigs", "faminc", "male", "white")
+
+tabL1$bwght=na.omit(tabL1$bwght)
+tabL1$cigs=na.omit(tabL1$cigs)
+tabL1$bwght=na.omit(tabL1$faminc)
+str(tabL1$bwght)
+str(tabL1$cigs)
+str(tabL1$faminc)
+tabL1$bwght=as.numeric(tabL1$bwght)
+
+# Ecrire à la main le modèle à estimer
+
+reg<-lm(tabL1$bwght~tabL1$cigs+tabL1$faminc)
+summary(reg)
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, em, si le nombre de cigarettes fum´ees /jour augmente d’une cigarette alors le poids du b´eb´e `a la naissance diminue de 0.463 once
+# TCEPA, em, si le revenu familial augmente de 1000 dollars US alors le poids du b´eb´e `a la naissance augmente de 0.092 once.
+
+
+
+
+##### Exercice 15
+library(PoEdata)
+data(br)
+br<-subset(br, select=c(price,sqft,bedrooms,baths,age))
+attach(br)
+
+str(br)
+any(is.na(br))
+
+reg<-lm(log(price)~sqft+bedrooms+baths+age)
+summary(reg)
+
+# TCEPA EM si la surface de la maison augmente de 1 pied carr´e alors le prix de la maison augmente de 0.03308%
+# TCEPA EM si le nombre de chambre augmente de 1 alors le prix de la maison diminue de 5.89%
+# TCEPA EM une salle de bain en plus augmente le prix de la maison de 21.4%
+# TCEPA EM si on compare deux maisons et que l’une est plus ancienne d’un an alors le prix de la maison la plus ancienne est inf´erieur de 0.66% au prix de la plus r´ecente
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+########## Jeudi 1
+
+
+##### Exercice 6
+rm(list = ls())
+
+data<-read.dta("wage2.dta")
+
+data$lwage=na.omit(data$lwage)
+data$KWW=na.omit(data$KWW)
+data$educ=na.omit(data$educ)
+data$IQ=na.omit(data$IQ)
+str(data$lwage)
+str(data$KWW)
+str(data$educ)
+str(data$IQ)
+
+# Ecrire à la main le modèle à estimer
+
+reg<-lm(data$lwage~data$KWW+data$educ+data$IQ)
+summary(reg)
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, em, si le r´esultat au test de connaissances sur le march´e du travail augmente de 1 point alors le salaire augmente de 0.98%
+# TCEPA, em, si le r´esultat au test du QI augmente de 1 point alors le salaire augmente de 0.44%
+# TCEPA, em, si le niveau d’´education augmente d’un an alors le salaire augmente de 3.1%
+
+
+
+##### Exercice 11
+rm(list = ls())
+
+library(caret)
+data(cars,package="caret")
+
+cars$Price=na.omit(cars$Price)
+cars$Mileage=na.omit(cars$Mileage)
+cars$Cylinder=na.omit(cars$Cylinde)
+cars$Doors=na.omit(cars$Doors)
+str(cars$Price)
+str(cars$Mileage)
+str(cars$Cylinder)
+str(cars$Doors)
+cars$Mileage=as.numeric(cars$Mileage)
+
+# Ecrire à la main le modèle à estimer
+
+reg<-lm(Price~Mileage+Cylinder+Doors,data=cars)
+summary(reg)
+# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Écriture avec les chapeaux
+# TCEPA, em, si la voiture a parcouru 100 miles en plus alors son prix diminuera de 15.53 dollars
+# TCEPA, em, si la voiture a un cylindre en plus alors son prix augmentera de 4029 dollars
+# TCEPA, em, si la voiture a une porte en plus alors son prix diminuera de 1653 dollars
+
+# Une GM avec 4 portes, 6 cylindres et 21000 miles au compteur vaudra 23325.7 dollars (=9025-0.1553*21000+4029*6-1653*4)
+
+
+
+
+
+
+
+
+
+
+
+########## Jeudi 2
 
 ##### Exercice 3
 rm(list = ls())
@@ -76,6 +200,7 @@ reg$coef[1]+10148*reg$coef[2]+1500*reg$coef[3]
 
 
 
+##### Exercice 17
 
 
 
@@ -87,8 +212,7 @@ reg$coef[1]+10148*reg$coef[2]+1500*reg$coef[3]
 
 
 
-
-
+########## Vendredi 1
 
 ##### Exercice 4
 rm(list = ls())
@@ -113,121 +237,6 @@ summary(reg)
 # Écriture avec les chapeaux
 # TCEPA, em, si l’indice de prix augmente de 1 dollar alors les ventes diminuent de 7907.90 dollars
 # TCEPA, em, si les d´epenses en publicit´e augmentent de 1000 dollars alors les ventes augmentent de 1860 dollars
-
-
-
-
-
-
-
-
-
-
-
-##### Exercice 5
-rm(list = ls())
-
-library(PoEdata)
-data(pizza4)
-
-pizza4$pizza=na.omit(pizza4$pizza)
-pizza4$income=na.omit(pizza4$income)
-pizza4$age=na.omit(pizza4$age)
-str(pizza4$pizza)
-str(pizza4$income)
-pizza4$pizza=as.numeric(pizza4$pizza)
-str(pizza4$age)
-
-# Ecrire à la main le modèle à estimer
-
-reg<-lm(pizza4$pizza~pizza4$income+pizza4$age)
-summary(reg)
-# Toutes les pvalue sont inférieur au seuil de risque de 5%
-# Écriture avec les chapeaux
-# TCEPA, em, si l’ˆage augmente d’une ann´ee alors les d´epenses annuelles de pizza diminue de 7.5756 dollars
-# TCEPA, em, si le revenu annuel augmente d’un millier de dollars alors les d´epenses annuelles de pizza augmentent de 1.83 dollars
-
-
-
-
-
-
-
-
-
-
-
-##### Exercice 6
-rm(list = ls())
-
-data<-read.dta("wage2.dta")
-
-data$lwage=na.omit(data$lwage)
-data$KWW=na.omit(data$KWW)
-data$educ=na.omit(data$educ)
-data$IQ=na.omit(data$IQ)
-str(data$lwage)
-str(data$KWW)
-str(data$educ)
-str(data$IQ)
-
-# Ecrire à la main le modèle à estimer
-
-reg<-lm(data$lwage~data$KWW+data$educ+data$IQ)
-summary(reg)
-# Toutes les pvalue sont inférieur au seuil de risque de 5%
-# Écriture avec les chapeaux
-# TCEPA, em, si le r´esultat au test de connaissances sur le march´e du travail augmente de 1 point alors le salaire augmente de 0.98%
-# TCEPA, em, si le r´esultat au test du QI augmente de 1 point alors le salaire augmente de 0.44%
-# TCEPA, em, si le niveau d’´education augmente d’un an alors le salaire augmente de 3.1%
-
-
-
-
-
-
-
-
-
-
-##### Exercice 7
-rm(list = ls())
-
-tabI<-read.table("ceosal2.dat",h=T)
-
-tabI$salary=na.omit(tabI$salary)
-tabI$sales=na.omit(tabI$sales)
-tabI$ceoten=na.omit(tabI$ceoten)
-tabI$mktval=na.omit(tabI$mktval)
-str(tabI$salary)
-str(tabI$sales)
-str(tabI$ceoten)
-str(tabI$mktval)
-tabI$salary=as.numeric(tabI$salary)
-tabI$sales=as.numeric(tabI$sales)
-tabI$mktval=as.numeric(tabI$mktval)
-
-# Ecrire à la main le modèle à estimer
-
-reg<-lm(tabI$salary~tabI$sales+tabI$ceoten+tabI$mktval)
-summary(reg)
-# Toutes les pvalue sont inférieur au seuil de risque de 6.5%
-# Écriture avec les chapeaux
-# TCEPA, em, si le niveau des ventes augmente de 1 million de $ alors la valeur de la compensation re¸cue augmente de 0.01902 milliers de $ soit 19 dollars
-# TCEPA, em, si le nombre d’ann´ees dans la compagnie augmente d’un an alors la valeur de la compensation re¸cue augmente de 12.7 milliers de dollars soit 12700 dollars
-# TCEPA, em, si la valeur de march´e de la firme augmente de 1 million de $ alors la valeur de la compensation re¸cue augmente de 0.0234 milliers de dollars soit 23.40 dollars
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -273,121 +282,58 @@ summary(reg)
 
 
 
-##### Exercice 9
+########## Vendredi 2
+
+
+##### Exercice 5
 rm(list = ls())
 
-library(freqparcoord)
-data(prgeng)
+library(PoEdata)
+data(pizza4)
 
-pe<-prgeng[ prgeng$educ>= 13 & prgeng$educ !=15 ,]
-
-pe$age=na.omit(pe$age)
-pe$wageinc=na.omit(pe$wageinc)
-pe$wkswrkd=na.omit(pe$wkswrkd)
-str(pe$age)
-str(pe$wageinc)
-str(pe$wkswrkd)
-pe$wageinc=as.numeric(pe$wageinc)
+pizza4$pizza=na.omit(pizza4$pizza)
+pizza4$income=na.omit(pizza4$income)
+pizza4$age=na.omit(pizza4$age)
+str(pizza4$pizza)
+str(pizza4$income)
+pizza4$pizza=as.numeric(pizza4$pizza)
+str(pizza4$age)
 
 # Ecrire à la main le modèle à estimer
 
-reg<-lm(pe$wageinc~pe$age+pe$wkswrkd)
+reg<-lm(pizza4$pizza~pizza4$income+pizza4$age)
 summary(reg)
 # Toutes les pvalue sont inférieur au seuil de risque de 5%
 # Écriture avec les chapeaux
-# TCEPA, si on compare deux programmeurs ou 2 ing´enieurs de la Silicon Valley ayant travaill´e le mˆeme nombre de semaine dans l’ann´ee, le plus d’ˆag´e d’un an aura un salaire annuel moyen plus ´elev´e de 497.63 dollars.
-# TCEPA, si on compare deux programmeurs ou 2 ing´enieurs de la Silicon Valley ayant le mˆeme ˆage, celui qui a travaill´e une semaine de plus dans l’ann´ee aura un salaire annuel moyen plus ´elev´e de 1494.6 dollars.
+# TCEPA, em, si l’ˆage augmente d’une ann´ee alors les d´epenses annuelles de pizza diminue de 7.5756 dollars
+# TCEPA, em, si le revenu annuel augmente d’un millier de dollars alors les d´epenses annuelles de pizza augmentent de 1.83 dollars
 
 
 
 
-
-
-
-
-##### Exercice 10
+##### Exercice 7
 rm(list = ls())
 
-tabL<-read.table("BWGHT.dat",h=F)
-tabL1<-subset(tabL, select =c(4,10,1,8,9))
-names(tabL1)<-c("bwght","cigs", "faminc", "male", "white")
+tabI<-read.table("ceosal2.dat",h=T)
 
-tabL1$bwght=na.omit(tabL1$bwght)
-tabL1$cigs=na.omit(tabL1$cigs)
-tabL1$bwght=na.omit(tabL1$faminc)
-str(tabL1$bwght)
-str(tabL1$cigs)
-str(tabL1$faminc)
-tabL1$bwght=as.numeric(tabL1$bwght)
+tabI$salary=na.omit(tabI$salary)
+tabI$sales=na.omit(tabI$sales)
+tabI$ceoten=na.omit(tabI$ceoten)
+tabI$mktval=na.omit(tabI$mktval)
+str(tabI$salary)
+str(tabI$sales)
+str(tabI$ceoten)
+str(tabI$mktval)
+tabI$salary=as.numeric(tabI$salary)
+tabI$sales=as.numeric(tabI$sales)
+tabI$mktval=as.numeric(tabI$mktval)
 
 # Ecrire à la main le modèle à estimer
 
-reg<-lm(tabL1$bwght~tabL1$cigs+tabL1$faminc)
+reg<-lm(tabI$salary~tabI$sales+tabI$ceoten+tabI$mktval)
 summary(reg)
-# Toutes les pvalue sont inférieur au seuil de risque de 5%
+# Toutes les pvalue sont inférieur au seuil de risque de 6.5%
 # Écriture avec les chapeaux
-# TCEPA, em, si le nombre de cigarettes fum´ees /jour augmente d’une cigarette alors le poids du b´eb´e `a la naissance diminue de 0.463 once
-# TCEPA, em, si le revenu familial augmente de 1000 dollars US alors le poids du b´eb´e `a la naissance augmente de 0.092 once.
-
-
-
-
-
-
-
-##### Exercice 11
-rm(list = ls())
-
-library(caret)
-data(cars,package="caret")
-
-cars$Price=na.omit(cars$Price)
-cars$Mileage=na.omit(cars$Mileage)
-cars$Cylinder=na.omit(cars$Cylinde)
-cars$Doors=na.omit(cars$Doors)
-str(cars$Price)
-str(cars$Mileage)
-str(cars$Cylinder)
-str(cars$Doors)
-cars$Mileage=as.numeric(cars$Mileage)
-
-# Ecrire à la main le modèle à estimer
-
-reg<-lm(Price~Mileage+Cylinder+Doors,data=cars)
-summary(reg)
-# Toutes les pvalue sont inférieur au seuil de risque de 5%
-# Écriture avec les chapeaux
-# TCEPA, em, si la voiture a parcouru 100 miles en plus alors son prix diminuera de 15.53 dollars
-# TCEPA, em, si la voiture a un cylindre en plus alors son prix augmentera de 4029 dollars
-# TCEPA, em, si la voiture a une porte en plus alors son prix diminuera de 1653 dollars
-
-# Une GM avec 4 portes, 6 cylindres et 21000 miles au compteur vaudra 23325.7 dollars (=9025-0.1553*21000+4029*6-1653*4)
-
-
-
-
-
-
-
-##### Exercice 12
-rm(list = ls())
-
-tabC<-read.table("sleep75.dat",h=F)
-tabC1<-subset(tabC, select =c(6,16,21,26, 30))
-names(tabC1)<-c("educ","male","sleep","totwrk", "exper")
-
-tabC1$sleep=na.omit(tabC1$sleep)
-tabC1$totwrk=na.omit(tabC1$totwrk)
-tabC1$exper=na.omit(tabC1$exper)
-str(tabC1$sleep)
-str(tabC1$totwrk)
-str(tabC1$exper)
-
-# Ecrire à la main le modèle à estimer
-
-reg<-lm(sleep~totwrk+exper,data=tabC1)
-summary(reg)
-# Toutes les pvalue sont inférieur au seuil de risque de 5%
-# Écriture avec les chapeaux
-# TCEPA, em, si on passe une minute de plus au travail dans la semaine, on perd 0.14 mn de temps de sommeil dans la semaine
-# TCEPA, em, si on a une ann´ee d’exp´erience en + alors la dur´ee de sommeil augmente de 3 minutes
+# TCEPA, em, si le niveau des ventes augmente de 1 million de $ alors la valeur de la compensation re¸cue augmente de 0.01902 milliers de $ soit 19 dollars
+# TCEPA, em, si le nombre d’ann´ees dans la compagnie augmente d’un an alors la valeur de la compensation re¸cue augmente de 12.7 milliers de dollars soit 12700 dollars
+# TCEPA, em, si la valeur de march´e de la firme augmente de 1 million de $ alors la valeur de la compensation re¸cue augmente de 0.0234 milliers de dollars soit 23.40 dollars
