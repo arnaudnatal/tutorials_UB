@@ -198,6 +198,8 @@ for k in range(3,8):
 for k in range(3,9,2):
     print(k)
     
+    
+    
 
 ##### Exercice 8
 def sommeCarres(n):
@@ -205,6 +207,9 @@ def sommeCarres(n):
     for i in range(1,n+1):
         s=s+i**2
     return s
+
+
+sommeCarres(3)
 
 
 ##### Exercice 9
@@ -243,6 +248,11 @@ estPremier(5)
 # i=4 --> 5%4=1 donc rien
 
 # n>=2 donc retourne True
+
+estPremier(12)
+# n=12
+# i=2 --> 12%2=0 donc FALSE
+# Terminé
 
 ##### Exercice 10
 def approxPi(nbEtapes):
@@ -300,7 +310,7 @@ def factorielle(n):
       return 1
    else:
       var=1
-      for i in range(2,n+1):
+      for i in range(1,n+1):
          var=var*i
       return var
 # factorielle de 0=1
@@ -359,7 +369,7 @@ coeff_binomial(5,2)
       
 def triangle_pascal(nb_lignes):
     for n in range(nb_lignes+1): 
-        for k in range(n): 
+        for k in range(n+1): 
             print(coeff_binomial(n,k), end=" ") 
         print()        
         
