@@ -12,12 +12,12 @@ arnaud.natal@u-bordeaux.fr
 ##### Exercice 1
 %reset -f
 for i in [2,8,5]:
-    print(i,i+1)
+    print(i,i*i)
     
 
 u=[2,8,5]
 for i in u:
-    print(i,i+1)
+    print(i,i*i)
     
 # Oui, elle prend la valeur de la dernière de la liste
 
@@ -26,60 +26,74 @@ for i in u:
 %reset -f
 L=[17,38,10,25,72]
 
+# Q1.
 L.append(12)
 print(L)
 
+# Q2.
 val=L[4]
 print(val)
 
+# Q3.
 ind=L.index(25)
 print(ind)
 
+# Q4.
 long=len(L)
 print(long)
 
+# Q5.
 L.remove(38)
 print(L)
 
+# Q6.
 L.extend([8,14,29])
 print(L)
 
+# Q7.
 del(L[2])
 print(L)
 
+# Q8.
 L[0]=55
 print(L)
 
+# Q9.
 L2=L[2:5]
 print(L2)
 
+# Q10.
 L3=L[:3]
 print(L3)
 
+# Q11.
 L4=L[3:]
 print(L4)
 
+# Q12.
 L5=L2+L3+L4
 print(L5)
 
+# Q13.
 Ll=L[:]
-print(Ll)
-
-Ll=Ll+[99]
 print(Ll)
 
 Ll.append(99)
 print(Ll)
 
+# Q14.
 L6=[x**3 for x in range(5,12)]
 print(L6)
 
+# Q15.
 L7=[2*x**2-3*x+5 for x in range(1,9)]
 print(L7)
 
+# Q16.
 L8=[x**2 for x in range(10,21,2)]
 print(L8)
 
+# Q17.
 L9=[x for x in range(111,130,3)]
 print(L9)
 

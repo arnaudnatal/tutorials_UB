@@ -360,4 +360,5 @@ def triangle_pascal(nb_lignes):
             print(coeff_binomial(n,k), end=" ") 
         print()        
         
+        
 triangle_pascal(5)
