@@ -202,7 +202,8 @@ reg$coef[1]+10148*reg$coef[2]+1500*reg$coef[3]
 
 ##### Exercice 17
 
-
+library(foreign)
+# ...
 
 
 
