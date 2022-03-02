@@ -175,16 +175,6 @@ def moyenneListe(L):
     return s/len(L)
 moyenneListe([1,2,3,4,5,6,7,2,3,99])
 
-# variante 1
-def moyenneListe(L):
-    s=0
-    c=0
-    for i in L:
-        s=s+i
-        c=c+1
-    return s/c
-moyenneListe([1,2,3,4,5,6,7,2,3,99])
-
 # variante 2
 def moyenneListe(L):
     return sommeListe(L)/len(L)

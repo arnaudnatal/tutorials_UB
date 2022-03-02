@@ -124,8 +124,10 @@ if x%2==0:
 else:
     y=x+1
 x=x+1
+print("x=",x,"y=",y)
 # x=1 --> x=2 & y=2
 # x=8 --> x=9 & y=4
+
 
 x=int(input("Entrez un nombre entier svp : ")) 
 if x%2==0:
