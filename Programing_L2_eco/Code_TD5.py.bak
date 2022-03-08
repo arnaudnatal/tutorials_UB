@@ -56,9 +56,6 @@ def estPremier(n):
             return False
     return n>=2
 
-# i, n = de 2 à n-1 sachant qu'est premier si uniquement divsible par 1 et lui même
-# donc on essaye tous les nb entre
-
 def nbPremiers(n):
     nb=0
     for i in range (2,n):
