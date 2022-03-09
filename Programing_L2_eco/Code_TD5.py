@@ -13,6 +13,17 @@ arnaud.natal@u-bordeaux.fr
 %reset -f
 
 def uneMinuteEnPlus(h,m):
+    if h<23:
+        if m<59:
+            return (h,m+1)
+        return (h+1,0)
+    else:
+        if m<59:
+            return (h,m+1)
+        return (0,0)
+
+
+def uneMinuteEnPlus(h,m):
     if m<59:
         return (h,m+1)
     elif h<23:
@@ -36,17 +47,6 @@ def uneMinuteEnPlus (h, m):
     if m==0:
         h=(h+1)%24
     return h, m
-
-# variante
-def test(h,m):
-    if h<23:
-        if m<59:
-            return (h,m+1)
-        return (h+1,0)
-    else:
-        if m<59:
-            return (h,m+1)
-        return (0,0)
 
 
 ##### Exercice 2
@@ -77,6 +77,7 @@ def nbPremiers(n):
 ##### Exercice 3
 %reset -f
 
+# Q2.
 def premier (n):
     if n<=1:
         return False
@@ -94,6 +95,9 @@ def testPremier():
             print(n)
 testPremier()
 
+
+
+# Q3.
 def premier2 (n):
     if n==2:
         return True
@@ -141,6 +145,7 @@ def ecartTypeListe(L):
     n = len(L)
     return sqrt(s2/n-(s*s)/(n*n))
 
+
 maliste=ouvrirCSV("notes.csv")
 mlmoy=moyenneListe(maliste)
 mlsd=ecartTypeListe(maliste) 
@@ -169,20 +174,32 @@ mystere(maliste2, 30)
 ##### Exercice 5
 %reset -f
 
+# Q1.
 def facteurImpair(n):
     while n%2==0:
         n=n//2
     return n
 
+facteurImpair(504)
 
+# Q2.
 def puissanceDiviseur(p,n):
+    v=1
+    while n%(p**v)==0:
+        v=v+1
+    return (p,n,v-1,p**(v-1))
+
+puissanceDiviseur(2,504)
+
+# variante
+def puissanceDiviseurBis(p,n):
     v=p
     while n%v==0:
         v=p*v
     return v//p
 
 # variante
-def puissanceDiviseurBis(p,n):
+def puissanceDiviseurBis2(p,n):
     v=1
     while n%p==0:
         n=n//p
@@ -190,28 +207,77 @@ def puissanceDiviseurBis(p,n):
     return v 
 
 
-def premierSuivant (n):
+puissanceDiviseur(2,504)
+puissanceDiviseurBis(2,504)
+
+puissanceDiviseur(5,809)
+puissanceDiviseurBis(5,809)
+
+puissanceDiviseur(2,999)
+puissanceDiviseurBis(2,999)
+
+# Q3.
+def premier (n):
+    if n<=1:
+        return False
+    d=2
+    while d*d<=n:
+        if n%d==0:
+            return False
+        d=d+1
+    return True
+
+
+def premierSuivant(n):
+    p=n+1
+    while premier(p)==False:
+        p=p+1
+    return p
+
+# Ou plus rapidement avec not
+def premierSuivantBis(n):
     p=n+1
     while not premier(p):
         p=p+1
     return p
 
+premierSuivant(2)
+premierSuivant(3)
+premierSuivantBis(3)
 
-def decompositionProduitFacteursPremiers(n):
+
+def decompositionFacteursPremiers(n):
+    p = 2
+    l = []
+    while n > 1 :
+        while n > 1 and n % p == 0:
+            n = n // p
+            l = l + [p]
+        p = premierSuivant(p)
+    return l
+
+decompositionFacteursPremiers(12)
+
+
+def decompo(n):
     p=2
     l=[]
     while n>1:
-        while n>1 and n%p==0:
+        while n%p==0:
             n=n//p
             l=l+[p]
-         p=premierSuivant(p)
+        p=premierSuivant(p)
     return l
 
+
+decompo(12)
+decompositionFacteursPremiers(12)
 
 
 ##### Exercice 6
 %reset -f
 
+# Q2.
 def syracuse (a,n):
     u=a
     for i in range (n):
@@ -221,41 +287,35 @@ def syracuse (a,n):
             u=(3*u+1)
     return u
 
+syracuse(5,6)
+
+# Q4.
 def longueur (a):
     n=0
     while syracuse(a,n)>1:
         n=n+1
     return n
 
-# variante
-def longueur(a):
-    u=a
-    n=0
-    while u>1:
-        if u%2==0:
-            u=u//2
-        else:
-            u=(3*u+1)
-        n=n+1
-    return n
+# Q5.
+max=0
+for i in range(100):
+    n=longueur(i)
+    if n>max:
+        max=n
+    print(i, n, max)
 
-# on peut aussi définir la fonction qui
-# calcule un nouveau terme de la suite
-# en fonction du précédent:
+# Q6.
+longueur(27)
+
+
+
+# Q7.
+# on peut défini la fonction qui calcule un nouveau terme
 def f(u):
-    if u%2==0:
-        return u//2
+    if u%2 == 0:
+        return u // 2
     else:
         return (3*u+1)
-
-# et écrire:
-def longueur(a):
-    u=a
-    n=0
-    while u>1:
-        u=f(u)
-        n=n+1
-    return n
 
 def listeSyracuse(a):
     u=a
@@ -264,7 +324,8 @@ def listeSyracuse(a):
         u=f(u)
         s=s+[u]
     return s
-    
+
+# Q8.    
 def hauteur(a):
     u=a
     max=a
@@ -275,25 +336,43 @@ def hauteur(a):
     return max
 
 
-##### Exercice 6
+##### Exercice 7
 %reset -f
 
+# Q1.
 def suite(n):
     u=3
     for i in range(n):
-        u=u/2+1/u
+        u=(u/2)+(1/u)
     return u
 
+
+# Q2.
+for i in range(11):
+    print(suite(i))
+
+
+# Q3.
 def sqrt(x):
     u=x
     for i in range(10):
-        u=(u+x/u)/2
+        u=(u+(x/u))/2
+        print(i,u)
     return u
 
+sqrt(2)
+sqrt(3)
+sqrt(10)
+
+# Q4.
+sqrt(1000000)
+
 def sqrt2(x):
-    u=x+1
-    u2=x
+    u=x
+    u2=(u+(x/u))/2
     while abs(u2-u)>0.0000001:
         u=u2
-        u2=(u+x/u)/2
+        u2=(u+(x/u))/2
     return u2
+
+sqrt3(1000000)
