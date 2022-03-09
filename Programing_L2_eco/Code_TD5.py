@@ -38,8 +38,15 @@ def uneMinuteEnPlus (h, m):
     return h, m
 
 # variante
-def uneMinuteEnPlus(h,m):
-    return(h+(m+1)//60)%24, (m+1)%60
+def test(h,m):
+    if h<23:
+        if m<59:
+            return (h,m+1)
+        return (h+1,0)
+    else:
+        if m<59:
+            return (h,m+1)
+        return (0,0)
 
 
 ##### Exercice 2
@@ -48,11 +55,11 @@ def uneMinuteEnPlus(h,m):
 def estDiviseur(i,n):
     return n%i==0
 
-# 2,3,5,7,11,13
+# 3,5,7,11,13
 
 def estPremier(n):
     for i in range(2,n):
-        if estDiviseur(i,n):
+        if estDiviseur(i,n)==True:
             return False
     return n>=2
 
@@ -60,10 +67,10 @@ def estPremier(n):
 # donc on essaye tous les nb entre
 
 def nbPremiers(n):
-    nb=0
+    count=0
     for i in range (2,n):
         if estPremier(i):
-            nb=nb+1
+            count=count+1
     return nb
 
 
