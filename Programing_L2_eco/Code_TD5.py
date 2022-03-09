@@ -9,6 +9,15 @@ Arnaud Natal
 arnaud.natal@u-bordeaux.fr
 """
 
+
+
+
+
+
+
+
+
+
 ##### Exercice 1
 %reset -f
 
@@ -21,18 +30,18 @@ def uneMinuteEnPlus(h,m):
         if m<59:
             return (h,m+1)
         return (0,0)
-
-
-def uneMinuteEnPlus(h,m):
-    if m<59:
+    
+def uneMinuteEnPlus2(h,m):
+    if h<23 and m<59:
         return (h,m+1)
-    elif h<23:
+    elif h<23 and m==59:
         return (h+1,0)
+    elif h==23 and m<59:
+        return(23,m+1)
     else:
         return (0,0)
-
-# variante
-def uneMinuteEnPlus (h, m):
+    
+def uneMinuteEnPlus3(h,m):
     m=m+1
     if m==60:
         m=0
@@ -41,12 +50,22 @@ def uneMinuteEnPlus (h, m):
             h=0
     return h, m
 
-# variante
-def uneMinuteEnPlus (h, m):
-    m=(m+1)%60
-    if m==0:
-        h=(h+1)%24
-    return h, m
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ##### Exercice 2
@@ -72,6 +91,24 @@ def nbPremiers(n):
         if estPremier(i):
             count=count+1
     return nb
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ##### Exercice 3
@@ -109,6 +146,22 @@ def premier2 (n):
             return False
         d=d+2
     return True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ##### Exercice 4
@@ -171,6 +224,22 @@ mystere(maliste2, 30)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##### Exercice 5
 %reset -f
 
@@ -198,26 +267,16 @@ def puissanceDiviseurBis(p,n):
         v=p*v
     return v//p
 
-# variante
-def puissanceDiviseurBis2(p,n):
-    v=1
-    while n%p==0:
-        n=n//p
-        v=p*v
-    return v 
-
 
 puissanceDiviseur(2,504)
-puissanceDiviseurBis(2,504)
 
 puissanceDiviseur(5,809)
-puissanceDiviseurBis(5,809)
 
 puissanceDiviseur(2,999)
-puissanceDiviseurBis(2,999)
+
 
 # Q3.
-def premier (n):
+def premier(n):
     if n<=1:
         return False
     d=2
@@ -274,6 +333,20 @@ decompo(12)
 decompositionFacteursPremiers(12)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##### Exercice 6
 %reset -f
 
@@ -308,7 +381,6 @@ for i in range(100):
 longueur(27)
 
 
-
 # Q7.
 # on peut défini la fonction qui calcule un nouveau terme
 def f(u):
@@ -334,6 +406,24 @@ def hauteur(a):
         if u>max:
             max=u
     return max
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ##### Exercice 7
