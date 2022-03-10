@@ -74,7 +74,7 @@ def uneMinuteEnPlus3(h,m):
 def estDiviseur(i,n):
     return n%i==0
 
-# 3,5,7,11,13
+# 2,3,5,7,11,13
 
 def estPremier(n):
     for i in range(2,n):
@@ -124,6 +124,7 @@ def premier (n):
             return False
         d=d+1
     return True
+
 
 
 def testPremier():
