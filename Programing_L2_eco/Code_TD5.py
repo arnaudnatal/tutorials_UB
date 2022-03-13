@@ -352,7 +352,7 @@ decompositionFacteursPremiers(12)
 %reset -f
 
 # Q2.
-def syracuse (a,n):
+def syracuse(a,n):
     u=a
     for i in range (n):
         if u%2==0:
@@ -364,7 +364,7 @@ def syracuse (a,n):
 syracuse(5,6)
 
 # Q4.
-def longueur (a):
+def longueur(a):
     n=0
     while syracuse(a,n)>1:
         n=n+1
@@ -380,6 +380,32 @@ for i in range(100):
 
 # Q6.
 longueur(27)
+# Il va répéter les calculs de n=1, n=2 pour n=3, puis pour n=4 il va refaire pour n=1,n=2,n=3, etc.
+# Pour longueur(27), il nous sort 111
+# Donc au bout de la 111e itération qu'il tombe sur 1
+# Il a donc fait les calculs:
+# n+(n-1)+n(-2)+...=n*(n-1)/2
+# Donc:
+110*(110-1)/2
+# 6105 fois
+
+# C'est à cause du fait qu'on imbrique un for dans un while
+# Donc pour éviter un trop grand nb d'itération, on sort la boucle for
+
+def longueur(a):
+    u=a
+    n=0
+    while u>1:
+        if u%2==0:
+            u=u//2
+        else:
+            u=(3*u+1)
+        n=n+1
+    return n
+
+
+
+
 
 
 # Q7.
