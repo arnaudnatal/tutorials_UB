@@ -410,7 +410,7 @@ def longueur(a):
 
 # Q7.
 # on peut défini la fonction qui calcule un nouveau terme
-def f(u):
+def NouveauTerme(u):
     if u%2 == 0:
         return u // 2
     else:
@@ -420,7 +420,7 @@ def listeSyracuse(a):
     u=a
     s=[u]
     while u>1:
-        u=f(u)
+        u=NouveauTerme(u)
         s=s+[u]
     return s
 
@@ -429,7 +429,7 @@ def hauteur(a):
     u=a
     max=a
     while u>1:
-        u=f(u)
+        u=NouveauTerme(u)
         if u>max:
             max=u
     return max
