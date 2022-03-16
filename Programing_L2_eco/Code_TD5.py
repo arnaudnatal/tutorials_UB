@@ -361,7 +361,7 @@ def syracuse(a,n):
             u=(3*u+1)
     return u
 
-syracuse(5,6)
+syracuse(7,7)
 
 # Q4.
 def longueur(a):
